@@ -233,8 +233,12 @@ nnoremap cov :set <C-R>=(&virtualedit =~# "all") ? 'virtualedit-=all' : 'virtual
 function! s:setup_paste() abort
   let s:paste = &paste
   let s:mouse = &mouse
+  let s:number = &number
+  let s:list = &list
   set paste
   set mouse=
+  set nonumber
+  set nolist
 endfunction
 
 nnoremap <silent> <Plug>unimpairedPaste :call <SID>setup_paste()<CR>
@@ -248,8 +252,12 @@ augroup unimpaired_paste
         \ if exists('s:paste') |
         \   let &paste = s:paste |
         \   let &mouse = s:mouse |
+        \   let &number = s:number |
+        \   let &list = s:list |
         \   unlet s:paste |
         \   unlet s:mouse |
+        \   unlet s:number |
+        \   unlet s:list |
         \ endif
 augroup END
 
